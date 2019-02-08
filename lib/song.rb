@@ -13,7 +13,6 @@ class Song
   end
 
   def self.create
-# Aysan - How to refactor to one line.
     song = self.new
     self.all << song
     song
@@ -41,8 +40,8 @@ class Song
   def self.new_from_filename(name)
     name_split = name.split(" - ")
     artist = name_split[0]
-    title = name_split[1]
-    title.slice!(-4,4)
+    title = name_split[1].chomp(".mp3")
+    #title.slice!(-4,4)
 
     song = self.new
     song.artist_name = artist
@@ -52,13 +51,12 @@ class Song
   def self.create_from_filename(name)
     name_split = name.split(" - ")
     artist = name_split[0]
-    title = name_split[1]
-    title.slice!(-4,4)
+    title = name_split[1].chomp(".mp3")
+    #title.slice!(-4,4)
 
-    song = self.new
+    song = self.create
     song.artist_name = artist
     song.name = title
-    self.all << song
     song
   end
   def self.destroy_all
